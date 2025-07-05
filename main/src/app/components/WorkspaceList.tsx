@@ -378,7 +378,9 @@ export default function WorkspaceList() {
   }, [showModal, showCompanyModal, showApplyModal, showApplicantsModal]);
 
   const fetchCompanies = () => {
-    fetch("http://localhost:8000/api/create-company/", { method: "GET" })
+    fetch(`${process.env.VITE_BACKEND_URL}/api/create-company/`, {
+      method: "GET",
+    })
       .then((res) => res.json())
       .then((data) => {
         if (Array.isArray(data)) setCompanies(data);
@@ -392,7 +394,7 @@ export default function WorkspaceList() {
   const fetchJobs = () => {
     setLoading(true);
     setError(null);
-    fetch("http://localhost:8000/api/jobs/")
+    fetch(`${process.env.VITE_BACKEND_URL}/api/jobs/`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch workspaces");
         return res.json();
@@ -424,7 +426,7 @@ export default function WorkspaceList() {
     setCreating(true);
     setFormError(null);
     try {
-      const res = await fetch("http://localhost:8000/api/post-job/", {
+      const res = await fetch(`${process.env.VITE_BACKEND_URL}/api/post-job/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -466,11 +468,14 @@ export default function WorkspaceList() {
     setCompanyCreating(true);
     setCompanyError(null);
     try {
-      const res = await fetch("http://localhost:8000/api/create-company/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(companyForm),
-      });
+      const res = await fetch(
+        `${process.env.VITE_BACKEND_URL}/api/create-company/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(companyForm),
+        }
+      );
       if (!res.ok) {
         const data = await res.json();
         throw new Error(data.error || "Failed to create company");
@@ -503,7 +508,7 @@ export default function WorkspaceList() {
     setApplyError(null);
     setApplySuccess(null);
     try {
-      const res = await fetch("http://localhost:8000/api/apply/", {
+      const res = await fetch(`${process.env.VITE_BACKEND_URL}/api/apply/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...applyForm, job_id: applyJobId }),
@@ -527,7 +532,7 @@ export default function WorkspaceList() {
     setApplicants([]);
     setApplicantsLoading(true);
     setApplicantsError(null);
-    fetch(`http://localhost:8000/api/applicants/${jobId}/`)
+    fetch(`${process.env.VITE_BACKEND_URL}/api/applicants/${jobId}/`)
       .then((res) => {
         if (!res.ok) throw new Error("Failed to fetch applicants");
         return res.json();
