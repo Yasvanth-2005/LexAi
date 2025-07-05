@@ -26,16 +26,6 @@ const searchStyle: React.CSSProperties = {
   color: "#222",
 };
 
-const filterStyle: React.CSSProperties = {
-  padding: "6px 10px",
-  borderRadius: 6,
-  border: "1px solid #e5e7eb",
-  fontSize: 14,
-  marginRight: 10,
-  background: "#fff",
-  color: "#222",
-};
-
 const workspaceGridStyle: React.CSSProperties = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
@@ -232,23 +222,6 @@ const createBtnStyle: React.CSSProperties = {
   transition: "background 0.2s, color 0.2s",
 };
 
-const createBtnHoverStyle: React.CSSProperties = {
-  ...createBtnStyle,
-  background: "#000",
-  cursor: "pointer",
-};
-
-const cancelBtnStyle: React.CSSProperties = {
-  padding: "10px 20px",
-  borderRadius: 6,
-  background: "#f3f4f6",
-  color: "#222",
-  border: "none",
-  fontWeight: 500,
-  fontSize: 15,
-  cursor: "pointer",
-};
-
 const addCompanyBtnStyle: React.CSSProperties = {
   padding: "8px 16px",
   borderRadius: 8,
@@ -267,42 +240,6 @@ const addCompanyBtnHoverStyle: React.CSSProperties = {
   ...addCompanyBtnStyle,
   background: "#222",
   boxShadow: "0 3px 12px rgba(0,0,0,0.15)",
-};
-
-const pillStyle = (color: string): React.CSSProperties => ({
-  display: "inline-block",
-  padding: "4px 14px",
-  borderRadius: 8,
-  background: color,
-  color: "#fff",
-  fontWeight: 600,
-  fontSize: 13,
-  marginRight: 4,
-});
-
-const infoBarStyle: React.CSSProperties = {
-  background: "#0a2233",
-  color: "#fff",
-  borderRadius: 7,
-  padding: "12px 18px",
-  marginTop: 16,
-  display: "flex",
-  alignItems: "center",
-  fontWeight: 500,
-  fontSize: 15,
-  gap: 10,
-};
-
-const iconBtnStyle: React.CSSProperties = {
-  background: "#f3f4f6",
-  border: "1.5px solid #e5e7eb",
-  borderRadius: 7,
-  padding: "7px 10px",
-  marginLeft: 8,
-  cursor: "pointer",
-  display: "flex",
-  alignItems: "center",
-  transition: "background 0.2s, border 0.2s",
 };
 
 export default function WorkspaceList() {
@@ -349,7 +286,7 @@ export default function WorkspaceList() {
   const [inputFocus, setInputFocus] = useState<string | null>(null);
   const [modalBtnHover, setModalBtnHover] = useState<string | null>(null);
   const [search, setSearch] = useState("");
-  const [filter, setFilter] = useState("");
+  const [filter] = useState("");
 
   const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
